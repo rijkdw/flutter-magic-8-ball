@@ -7,9 +7,16 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
+void precacheSequence(BuildContext context) {
+  for (int i = 0; i < 6; i++) {
+    precacheImage(AssetImage('images/ball$i.png'), context);
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    precacheSequence(context);
     return ChangeNotifierProvider(
       create: (_) => SettingsModel(),
       child: MaterialApp(
@@ -42,8 +49,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: EightBall(),
+      body: Center(
+        child: EightBall(),
+      ),
     );
   }
 }
-

@@ -13,7 +13,10 @@ class _EightBallState extends State<EightBall> {
   int _faceNum = 1;
   bool _showCover = false;
 
-  void _askSequence() async {
+  void _tapSequence() async {
+    // if the cover is being shown, don't execute the sequence
+    if (_showCover) return;
+
     if (Provider.of<SettingsModel>(context, listen: false).vibrate) attemptVibrate(75);
     setState(() {
       _showCover = true;
@@ -30,12 +33,11 @@ class _EightBallState extends State<EightBall> {
   Widget build(BuildContext context) {
     return FlatButton(
       splashColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      onPressed: () => _askSequence(),
+      highlightColor: Colors.transparent,
+      onPressed: () => _tapSequence(),
+      onLongPress: () => _tapSequence(),
       padding: EdgeInsets.all(0),
-      child: Center(
-        child: Image.asset( _showCover ? 'images/ball0.png' : 'images/ball$_faceNum.png'),
-      ),
+      child: Image.asset( _showCover ? 'images/ball0.png' : 'images/ball$_faceNum.png'),
     );
   }
 }
