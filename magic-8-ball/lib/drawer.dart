@@ -39,12 +39,14 @@ class SettingsDrawer extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            trailing: Consumer<SettingsModel>(builder: (context, model, child) {
-              return Switch(
-                value: model.vibrate,
-                onChanged: (newVal) => model.vibrate = newVal,
-              );
-            }),
+            trailing: Consumer<SettingsModel>(
+              builder: (context, model, child) {
+                return Switch(
+                  value: model.vibrate,
+                  onChanged: (newVal) => model.vibrate = newVal,
+                );
+              },
+            ),
           ),
         ],
       ),
